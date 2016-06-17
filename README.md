@@ -7,14 +7,18 @@ Approach based on [Thinking in React](https://facebook.github.io/react/docs/thin
 Directory structure and setup based on:
 http://www.pro-react.com/materials/appendixA/
 
+To run locally:
+
 ```
 npm install
 npm start
 ```
-To build:
+Browse to http://localhost:8080
+
+To build a release version:
 ```
 npm run build
 
 ```
 
-Browse to http://localhost:8080
+

@@ -10,7 +10,7 @@ class SearchResultItem extends Component {
     render() {
         return (
             <tr>
-                <td>Name placeholder</td>
+                <td>{this.props.name}</td>
             </tr>
         );
     }

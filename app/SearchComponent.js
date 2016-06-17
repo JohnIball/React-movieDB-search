@@ -9,8 +9,6 @@ class SearchComponent extends Component {
         super();
 
         this.handleUserInput = this.handleUserInput.bind(this);
-        this.onSearchReturned = this.onSearchReturned.bind(this);
-        this.onSearchFailed = this.onSearchFailed.bind(this);
         this.clear = this.clear.bind(this);
 
         this.clear();
@@ -27,21 +25,18 @@ class SearchComponent extends Component {
             this.clear();
         } else {
             // TODO search for other things apart from movies?
-            theMovieDb.search.getMovie({"query": searchText}, this.onSearchReturned, this.onSearchFailed);
+            theMovieDb.search.getMovie({"query": searchText},
+                (res) => {
+                    this.setState({
+                        searchResults: JSON.parse(res).results
+                    });
+                },
+                // Failure to load ....
+                () => {
+                    this.clear();
+                    // TODO - what else should we do?
+                });
         }
-    }
-
-    onSearchReturned(res) {
-        let searchReturnJSON = JSON.parse(res);
-
-        this.setState({
-            searchResults: searchReturnJSON.results
-        });
-    }
-
-    onSearchFailed() {
-        clear();
-        // TODO - what else should we do?
     }
 
     clear() {

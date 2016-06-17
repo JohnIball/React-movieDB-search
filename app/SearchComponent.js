@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
-import results from './results';
 
 // Top level search component
 class SearchComponent extends Component {
@@ -10,17 +9,36 @@ class SearchComponent extends Component {
         super();
 
         this.handleUserInput = this.handleUserInput.bind(this);
+        this.onSearchReturned = this.onSearchReturned.bind(this);
+        this.onSearchFailed = this.onSearchFailed.bind(this);
 
         this.state = {
-            searchText: ''
+            searchText: '',
+            searchResults: [{title: ""}]
         }
     }
 
     handleUserInput(searchText) {
         console.log("new search text: " + searchText);
+
         this.setState({
             searchText: searchText
         });
+
+        // TODO search for other things apart from movies?
+        theMovieDb.search.getMovie({"query": searchText}, this.onSearchReturned, this.onSearchFailed);
+    }
+
+    onSearchReturned(res) {
+        let searchReturnJSON = JSON.parse(res);
+
+        this.setState({
+            searchResults: searchReturnJSON.results
+        });
+    }
+
+    onSearchFailed() {
+        // TODO
     }
 
     render() {
@@ -31,7 +49,7 @@ class SearchComponent extends Component {
                     onUserInput = {this.handleUserInput}
                 />
                 <SearchResults
-                    results = {results}
+                    searchResults = {this.state.searchResults}
                 />
             </div>
         );

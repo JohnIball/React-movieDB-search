@@ -10,7 +10,7 @@ class SearchResultItem extends Component {
     render() {
         return (
             <tr>
-                <td>{this.props.name}</td>
+                <td>{this.props.title}</td>
             </tr>
         );
     }

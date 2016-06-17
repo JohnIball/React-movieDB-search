@@ -9,9 +9,9 @@ class SearchResults extends Component {
     }
 
     render() {
-        var rows = [];
-        for (let i = 0; i < this.props.results.length; i ++) {
-            rows.push(<SearchResultItem name = {this.props.results[i].name} />);
+        let rows = [];
+        for (let i = 0; i < this.props.searchResults.length; i ++) {
+            rows.push(<SearchResultItem title = {this.props.searchResults[i].title} />);
         }
 
         return (

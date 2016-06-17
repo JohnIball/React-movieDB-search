@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 
 // Search result item
-// TODO For now this is just the title. Could be expanded to use image, synopsis, etc.
 class SearchResultItem extends Component {
 
     constructor() {

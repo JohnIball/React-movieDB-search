@@ -55,11 +55,11 @@ class SearchComponent extends Component {
         return (
             <div>
                 <SearchBar
-                    searchText = {this.state.searchText}
+                    {...this.state}
                     onUserInput = {this.handleUserInput}
                 />
                 <SearchResults
-                    searchResults = {this.state.searchResults}
+                    {...this.state}
                 />
             </div>
         );

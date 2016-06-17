@@ -10,14 +10,14 @@ class SearchResults extends Component {
     }
 
     render() {
-        let rows = [];
+        let items = [];
         for (let i = 0; i < this.props.searchResults.length; i ++) {
-            rows.push(<SearchResultItem item = {this.props.searchResults[i]} />);
+            items.push(<SearchResultItem itemData = {this.props.searchResults[i]} />);
         }
 
         return (
             <table>
-                <tbody>{rows}</tbody>
+                <tbody>{items}</tbody>
             </table>
         );
     }

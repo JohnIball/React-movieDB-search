@@ -11,22 +11,24 @@ class SearchComponent extends Component {
         this.handleUserInput = this.handleUserInput.bind(this);
         this.onSearchReturned = this.onSearchReturned.bind(this);
         this.onSearchFailed = this.onSearchFailed.bind(this);
+        this.clear = this.clear.bind(this);
 
-        this.state = {
-            searchText: '',
-            searchResults: [{title: ""}]
-        }
+        this.clear();
     }
 
+    // Get the user input from the search box
     handleUserInput(searchText) {
-        console.log("new search text: " + searchText);
-
         this.setState({
             searchText: searchText
         });
 
-        // TODO search for other things apart from movies?
-        theMovieDb.search.getMovie({"query": searchText}, this.onSearchReturned, this.onSearchFailed);
+        if (searchText === "") {
+            // Clear, otherwise we get junk results
+            this.clear();
+        } else {
+            // TODO search for other things apart from movies?
+            theMovieDb.search.getMovie({"query": searchText}, this.onSearchReturned, this.onSearchFailed);
+        }
     }
 
     onSearchReturned(res) {
@@ -38,7 +40,15 @@ class SearchComponent extends Component {
     }
 
     onSearchFailed() {
-        // TODO
+        clear();
+        // TODO - what else should we do?
+    }
+
+    clear() {
+        this.state = {
+            searchText: '',
+            searchResults: []
+        }
     }
 
     render() {

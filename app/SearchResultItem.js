@@ -9,10 +9,12 @@ class SearchResultItem extends Component {
     }
 
     render() {
+        // TODO move into a function or class to resolve image URLs
+        let imageSrc = "https://image.tmdb.org/t/p/w185/" + this.props.item.poster_path;
         return (
-            <tr>
-                <td>{this.props.title}</td>
-            </tr>
+            <td>
+                <img src = {imageSrc} />
+            </td>
         );
     }
 }

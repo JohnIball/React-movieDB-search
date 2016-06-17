@@ -12,7 +12,7 @@ class SearchResults extends Component {
     render() {
         let rows = [];
         for (let i = 0; i < this.props.searchResults.length; i ++) {
-            rows.push(<SearchResultItem title = {this.props.searchResults[i].title} />);
+            rows.push(<SearchResultItem item = {this.props.searchResults[i]} />);
         }
 
         return (

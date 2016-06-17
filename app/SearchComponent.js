@@ -1,15 +1,15 @@
 import React, {Component} from 'react'
-import config from './config.json';
+import SearchBar from './SearchBar';
 
 // Top level search component
 class SearchComponent extends Component{
     render() {
         return (
             <div>
-                {config.greetText}
+                <SearchBar />
             </div>
     );
     }
 }
 
-export default SearchComponent
+export default SearchComponent;

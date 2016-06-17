@@ -11,7 +11,6 @@ class SearchResults extends Component {
     render() {
         var rows = [];
         for (let i = 0; i < this.props.results.length; i ++) {
-            console.log(this.props.results[i].name);
             rows.push(<SearchResultItem name = {this.props.results[i].name} />);
         }
 

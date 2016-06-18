@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import SearchResultItem from './SearchResultItem';
 
 // Collection of search results
-// TODO For now this is a very simple table
 class SearchResults extends Component {
 
     constructor() {
@@ -10,14 +9,13 @@ class SearchResults extends Component {
     }
 
     render() {
-        let items = [];
-        for (let i = 0; i < this.props.searchResults.length; i ++) {
-            items.push(<SearchResultItem itemData = {this.props.searchResults[i]} />);
-        }
+        const items = this.props.searchResults.map((searchResultItemData) => {
+            return (<SearchResultItem itemData = {searchResultItemData} />)
+        });
 
         return (
             <table>
-                <tbody>{items}</tbody>
+                <tbody><tr>{items}</tr></tbody>
             </table>
         );
     }

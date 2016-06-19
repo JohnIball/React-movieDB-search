@@ -17,6 +17,7 @@ class SearchResultItem extends Component {
         return (
             <td>
                 <img src = {imageSrc} />
+                {this.props.itemData.title}
             </td>
         );
     }

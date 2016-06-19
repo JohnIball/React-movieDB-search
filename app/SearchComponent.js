@@ -24,16 +24,17 @@ class SearchComponent extends Component {
             // Clear, otherwise we get junk results
             this.clear();
         } else {
-            // TODO search for other things apart from movies?
-            theMovieDb.search.getMovie({"query": searchText},
+            // Get the first page of movies. Page size is 20, which is fine ....
+            theMovieDb.search.getMovie({"query": encodeURIComponent(searchText)},
                 (res) => {
                     this.setState({
                         searchResults: JSON.parse(res).results
                     });
                 },
                 // Failure to load ....
-                () => {
+                (res) => {
                     this.clear();
+                    console.log("Error calling TMDb: " + res);
                     // TODO - what else should we do?
                 });
         }

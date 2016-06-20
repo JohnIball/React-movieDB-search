@@ -12,8 +12,7 @@ class SearchResultItem extends Component {
             return null;
         }
 
-        // TODO move into a function or class to resolve image URLs
-        const imageSrc = "https://image.tmdb.org/t/p/w185/" + this.props.itemData.poster_path;
+        const imageSrc = theMovieDb.common.getImage({"file": this.props.itemData.poster_path, "size":"w185"});
         return (
             <td>
                 <img src = {imageSrc} />

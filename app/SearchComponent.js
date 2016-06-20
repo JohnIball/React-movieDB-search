@@ -25,7 +25,7 @@ class SearchComponent extends Component {
             this.clear();
         } else {
             // Get the first page of movies. Page size is 20, which is fine ....
-            theMovieDb.search.getMovie({"query": encodeURIComponent(searchText)},
+            theMovieDb.search.getMovie({"query": encodeURIComponent(searchText), "include_adult":false},
                 (res) => {
                     this.setState({
                         searchResults: JSON.parse(res).results

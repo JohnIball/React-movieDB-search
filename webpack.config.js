@@ -1,3 +1,6 @@
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
     devtool: 'eval-source-map',
     entry:  __dirname + "/app/main.js",
@@ -14,15 +17,20 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: 'babel',
-                query: {
-                    presets: ['es2015','react']
-                }
+                loader: 'babel'
+            },
+            {
+                test: /\.css$/,
+                loaders: ['style', 'css']
             }
         ]
     },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ],
     devServer: {
         contentBase: "./dist",
-        inline: true
+        inline: true,
+        hot: true
     }
 }

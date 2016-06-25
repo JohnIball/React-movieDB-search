@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
+import theMovieDb from "../dist/themoviedb";
 
 // Top level search component
 class SearchComponent extends Component {
@@ -9,8 +10,6 @@ class SearchComponent extends Component {
         super();
 
         this.handleUserInput = this.handleUserInput.bind(this);
-        this.onSearchReturned = this.onSearchReturned.bind(this);
-        this.onSearchFailed = this.onSearchFailed.bind(this);
         this.clear = this.clear.bind(this);
 
         this.clear();
@@ -26,22 +25,20 @@ class SearchComponent extends Component {
             // Clear, otherwise we get junk results
             this.clear();
         } else {
-            // TODO search for other things apart from movies?
-            theMovieDb.search.getMovie({"query": searchText}, this.onSearchReturned, this.onSearchFailed);
+            // Get the first page of movies. Page size is 20, which is fine ....
+            theMovieDb.search.getMovie({"query": encodeURIComponent(searchText), "include_adult":false},
+                (res) => {
+                    this.setState({
+                        searchResults: JSON.parse(res).results
+                    });
+                },
+                // Failure to load ....
+                (res) => {
+                    this.clear();
+                    console.log("Error calling TMDb: " + res);
+                    // TODO - what else should we do?
+                });
         }
-    }
-
-    onSearchReturned(res) {
-        let searchReturnJSON = JSON.parse(res);
-
-        this.setState({
-            searchResults: searchReturnJSON.results
-        });
-    }
-
-    onSearchFailed() {
-        clear();
-        // TODO - what else should we do?
     }
 
     clear() {
@@ -55,11 +52,11 @@ class SearchComponent extends Component {
         return (
             <div>
                 <SearchBar
-                    searchText = {this.state.searchText}
+                    {...this.state}
                     onUserInput = {this.handleUserInput}
                 />
                 <SearchResults
-                    searchResults = {this.state.searchResults}
+                    {...this.state}
                 />
             </div>
         );

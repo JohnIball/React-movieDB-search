@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
+import theMovieDb from "../dist/themoviedb";
 
 // Search result item
-// TODO For now this is just the title. Could be expanded to use image, synopsis, etc.
 class SearchResultItem extends Component {
 
     constructor() {
@@ -9,10 +9,16 @@ class SearchResultItem extends Component {
     }
 
     render() {
+        if (!this.props.itemData.poster_path) {
+            return null;
+        }
+
+        const imageSrc = theMovieDb.common.getImage({"file": this.props.itemData.poster_path, "size":"w185"});
         return (
-            <tr>
-                <td>{this.props.title}</td>
-            </tr>
+            <td>
+                <img src = {imageSrc} />
+                {this.props.itemData.title}
+            </td>
         );
     }
 }

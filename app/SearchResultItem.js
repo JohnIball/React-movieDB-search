@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import theMovieDb from "../lib/themoviedb";
+import theMovieDb from "~/lib/themoviedb";
 
 // Search result item
 class SearchResultItem extends Component {

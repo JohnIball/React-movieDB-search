@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
+import theMovieDb from "../dist/themoviedb";
 
 // Top level search component
 class SearchComponent extends Component {

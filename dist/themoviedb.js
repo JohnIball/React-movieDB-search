@@ -65,6 +65,7 @@ theMovieDb.common = {
             error('{"status_code":408,"status_message":"Request timed out"}');
         };
 
+        console.log("XXXX " + theMovieDb.common.base_uri + options.url);
         xhr.open(method, theMovieDb.common.base_uri + options.url, true);
 
         if(options.method === "POST") {
@@ -1653,3 +1654,5 @@ theMovieDb.tvEpisodes = {
         );
     }
 };
+
+module.exports = theMovieDb;

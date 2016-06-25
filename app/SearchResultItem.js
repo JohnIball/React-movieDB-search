@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import theMovieDb from "../dist/themoviedb";
 
 // Search result item
 class SearchResultItem extends Component {

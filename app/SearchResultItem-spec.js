@@ -1,16 +1,17 @@
 import SearchResultItem from './SearchResultItem';
 import React, {Component} from 'react';
 import ReactTestUtils from "react-addons-test-utils";
+import mockResultItems from './mockResultItems.json';
 
 describe('SearchResultItem', () => {
     it('should render result item', () => {
-        const renderedComponent = ReactTestUtils.renderIntoDocument(createSearchResultItem(mockItem));
+        const renderedComponent = ReactTestUtils.renderIntoDocument(createSearchResultItem(mockResultItems.mockItem));
         const foundComponents = ReactTestUtils.scryRenderedDOMComponentsWithTag(renderedComponent, "img");
         expect(foundComponents.length).toEqual(1);
     });
 
     it('should not render img element if no image path available', () => {
-        const renderedComponentWithNoImage = ReactTestUtils.renderIntoDocument(createSearchResultItem(mockItemWithNoImage));
+        const renderedComponentWithNoImage = ReactTestUtils.renderIntoDocument(createSearchResultItem(mockResultItems.mockItemWithNoImage));
         const foundComponents = ReactTestUtils.scryRenderedDOMComponentsWithTag(renderedComponentWithNoImage, "img");
         expect(foundComponents.length).toEqual(0);
     });
@@ -19,41 +20,3 @@ describe('SearchResultItem', () => {
 function createSearchResultItem(itemData) {
     return (<SearchResultItem itemData = {itemData} />);
 }
-
-const mockItem = {
-    "poster_path": "/ghCMJHzz05ztNFAQ28Ssl92nYH4.jpg",
-    "adult": false,
-    "overview": "During the Chinese Revolution in 1949, young Chinese copra trader named Fong-Huan marries Elisa, a young and pretty Filipina. The couples children, Daniel and Linda, were raised in a mixture of Chinese and Filipino-Hispanic tradition. These richly cultured people are the ancestors of a dysfunctional third-generation family whose daughters tell their own stories of joy, struggle, and the complex realities in the life of Filipino Chinese families.",
-    "release_date": "2002-12-25",
-    "genre_ids": [
-        18
-    ],
-    "id": 352709,
-    "original_title": "Mano Po",
-    "original_language": "en",
-    "title": "Mano Po",
-    "backdrop_path": null,
-    "popularity": 1.000394,
-    "vote_count": 0,
-    "video": false,
-    "vote_average": 0
-};
-
-const mockItemWithNoImage = {
-    "poster_path": null,
-    "adult": false,
-    "overview": "The Matica slovenská (a mostly government-sponsored cultural, academic, and archival institution) employed Karol Plicka (1894-1987) as its ethnographer, who was able to make documentary shorts from about 1926. He obtained funding from the President’s Office in 1928 to produce an hour-long documentary about village life, Through Mountains and Valleys (Po horách, po dolách). It was awarded a Gold Medal at the International Exposition of Photographic Art in Florence and received an Honorable Mention at the International Venice Film Festival in 1932.",
-    "release_date": "1929-01-01",
-    "genre_ids": [
-        99
-    ],
-    "id": 257682,
-    "original_title": "Po horách, po dolách",
-    "original_language": "en",
-    "title": "Through Mountains and Valleys",
-    "backdrop_path": null,
-    "popularity": 1.000143,
-    "vote_count": 0,
-    "video": false,
-    "vote_average": 0
-};
